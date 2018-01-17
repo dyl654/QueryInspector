@@ -8,7 +8,9 @@ namespace QueryInspector.Test
     {
         [Test]
         public void Sanity() {
-            1.Should().Be(1);
+            var parser = new QueryParser();
+            var query = parser.Parse("select * from users");
+            query.GetTableName().Should().Be("users");
         }
     }
 }

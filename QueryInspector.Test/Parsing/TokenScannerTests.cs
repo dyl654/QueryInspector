@@ -25,5 +25,13 @@ namespace QueryInspector.Test.Parsing {
 			scanner.Read();
 			scanner.Read().Should().Be(" \t");
 		}
+
+		[Test]
+		public void AbleToDetectIfThereIsStillATokenAvailable() {
+			var scanner = new TokenScanner("hello");
+			scanner.TokenIsAvailable.Should().BeTrue();
+			scanner.Read();
+			scanner.TokenIsAvailable.Should().BeFalse();
+		}
 	}
 }

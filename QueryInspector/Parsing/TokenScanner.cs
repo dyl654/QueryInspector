@@ -2,31 +2,33 @@
 
 namespace QueryInspector.Parsing {
 	public class TokenScanner {
-		private readonly CharacterScanner _scanner;
+		protected readonly CharacterScanner Scanner;
 		public TokenScanner(string input) {
-			_scanner = new CharacterScanner(input);
+			Scanner = new CharacterScanner(input);
 		}
 
-		public string Read() {
-			var current = _scanner.Read().ToString();
-			while (_scanner.CharacterIsAvailable) {
-				var next = _scanner.Read();
+		public virtual Token Read() {
+			var current = Scanner.Read().ToString();
+			while (Scanner.CharacterIsAvailable) {
+				var next = Scanner.Read();
 				if (ShouldAdd(current, next)) {
 					current += next;
 				}
 				else {
-					_scanner.Rewind();
-					return current;
+					Scanner.Rewind();
+					return new Token(current);
 				}
 			}
-			return current;
+			return new Token(current);
 		}
 
-		public bool ShouldAdd(string current, char next) {
+		protected virtual bool ShouldAdd(string current, char next) {
 			var previous = current.Last();
 			if (char.IsLetter(previous)) return char.IsLetter(next);
 			if (char.IsWhiteSpace(previous)) return char.IsWhiteSpace(next);
 			return false;
 		}
+
+		public bool TokenIsAvailable => Scanner.CharacterIsAvailable;
 	}
 }

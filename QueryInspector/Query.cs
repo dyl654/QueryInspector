@@ -1,10 +1,6 @@
 ﻿namespace QueryInspector
 {
-    public class Query
-    {
-        public string GetTableName()
-        {
-            return "";
-        }
+    public class Query : IQuery {
+        public string Table => "";
     }
 }

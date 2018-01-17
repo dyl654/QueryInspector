@@ -7,11 +7,11 @@ namespace QueryInspector.Test
     public class QueryTests
     {
         [Test]
-        [Ignore("one day...")]
-        public void Sanity() {
+        [Ignore("Needs factory implementation first")]
+        public void BasicSelectTest() {
             var parser = new QueryParser();
             var query = parser.Parse("select row12 , users.email from users");
-            query.GetTableName().Should().Be("users");
+            query.Table.Should().Be("users");
         }
     }
 }

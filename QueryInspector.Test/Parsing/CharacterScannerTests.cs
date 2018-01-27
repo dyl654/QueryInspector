@@ -31,5 +31,11 @@ namespace QueryInspector.Test.Parsing {
 			scanner.Read();
 			scanner.CharacterIsAvailable.Should().BeFalse();
 		}
+
+		[Test]
+		public void PeekGivesYouTheNextCharacter() {
+			var scanner = new CharacterScanner("b");
+			scanner.Peek().Should().Be('b');
+		}
 	}
 }

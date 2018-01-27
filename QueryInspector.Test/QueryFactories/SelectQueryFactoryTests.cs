@@ -16,7 +16,7 @@ namespace QueryInspector.Test.QueryFactories {
 			var factory = new SelectQueryFactory();
 			var query = factory.ParseQuery("select * from users");
 
-			query.Should().Be("users");
+			query.Table.Should().Be("users");
 		}
 	}
 }

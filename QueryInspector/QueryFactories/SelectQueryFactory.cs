@@ -10,7 +10,19 @@ namespace QueryInspector.QueryFactories {
 		}
 
 		public IQuery ParseQuery(string sql) {
-			throw new System.NotImplementedException();
+			var scanner = new TokenScanner(sql);
+			while (scanner.TokenIsAvailable) {
+				if (!scanner.Read().LooksLike("from")) continue;
+				
+				var next = scanner.Read();
+				while (next.IsWhitespace) {
+					next = scanner.Read();
+				}
+				return new SelectQuery {
+					Table = next.Contents
+				};
+			}
+			return null;
 		}
 	}
 }

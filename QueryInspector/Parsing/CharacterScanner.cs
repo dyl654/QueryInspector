@@ -16,5 +16,9 @@
 		public void Rewind() {
 			_position--;
 		}
+
+		public char Peek() {
+			return _input[_position];
+		}
 	}
 }

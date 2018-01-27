@@ -3,6 +3,7 @@
 namespace QueryInspector.Parsing {
 	public class TokenScanner {
 		protected readonly CharacterScanner Scanner;
+		
 		public TokenScanner(string input) {
 			Scanner = new CharacterScanner(input);
 		}
@@ -10,20 +11,19 @@ namespace QueryInspector.Parsing {
 		public virtual Token Read() {
 			var current = Scanner.Read().ToString();
 			while (Scanner.CharacterIsAvailable) {
-				var next = Scanner.Read();
-				if (ShouldAdd(current, next)) {
-					current += next;
-				}
-				else {
-					Scanner.Rewind();
-					return new Token(current);
-				}
+				if (!ShouldAddAnotherCharacter(current)) break;
+				current += Scanner.Read();
 			}
 			return new Token(current);
 		}
 
-		protected virtual bool ShouldAdd(string current, char next) {
+		protected virtual bool ShouldAddAnotherCharacter(string current) {
 			var previous = current.Last();
+			var next = Scanner.Peek();
+			return CharacterTypeMatches(previous, next);
+		}
+
+		protected virtual bool CharacterTypeMatches(char previous, char next) {
 			if (char.IsLetter(previous)) return char.IsLetter(next);
 			if (char.IsWhiteSpace(previous)) return char.IsWhiteSpace(next);
 			return false;

@@ -13,7 +13,20 @@ namespace QueryInspector.QueryFactory {
 		}
 
 		protected virtual string GetColumnClause(IColumn column) {
-			return $"{column.Name}";
+			return $"{GetColumnTable(column.Table)}{column.Name}{GetColumnAlias(column)}";
+		}
+
+		protected virtual string GetColumnTable(ITable columnTable) {
+			if (columnTable == null) return string.Empty;
+			return string.IsNullOrEmpty(columnTable.Alias) 
+				? $"{columnTable.Name}." 
+				: $"{columnTable.Alias}.";
+		}
+
+		protected virtual string GetColumnAlias(IColumn column) {
+			return string.IsNullOrEmpty(column.Alias)
+				? string.Empty
+				: $" AS {column.Alias}";
 		}
 
 		protected virtual string GetFromClause(ITable queryTable) {

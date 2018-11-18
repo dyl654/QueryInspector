@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
-using QueryInspector.QueryFactories;
+using QueryInspector.ModelFactories;
 
-namespace QueryInspector.Test.QueryFactories {
+namespace QueryInspector.Test.ModelFactories {
 	[TestFixture]
 	public class SelectQueryFactoryTests {
 		[Test]

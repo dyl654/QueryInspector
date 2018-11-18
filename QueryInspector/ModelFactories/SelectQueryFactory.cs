@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using QueryInspector.Models;
 
-namespace QueryInspector.QueryFactories {
+namespace QueryInspector.ModelFactories {
 	public class SelectQueryFactory : IQueryFactory {
 		private readonly Regex _selectStatement = new Regex(@"^select(.*?)(from(.*))?$");
 		

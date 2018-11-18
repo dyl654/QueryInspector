@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using QueryInspector.Models;
-using QueryInspector.QueryFactories;
+using QueryInspector.ModelFactories;
 
 namespace QueryInspector {
 	public class QueryParser {

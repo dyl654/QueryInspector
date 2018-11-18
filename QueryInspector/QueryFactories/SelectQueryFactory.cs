@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using QueryInspector.Models;
 
@@ -13,20 +14,23 @@ namespace QueryInspector.QueryFactories {
 		public ISelectQuery ParseQuery(string sql) {
 			var match = _selectStatement.Match(sql);
 			return new SelectQuery {
-				Columns = GetColumns(match.Groups[1].Value),
+				Columns = GetColumns(match.Groups[1].Value).ToList(),
 				Table = GetTable(match.Groups[3].Value)
 			};
+		}
+
+		protected virtual IEnumerable<IColumn> GetColumns(string columnList) {
+			var columns = columnList.Split(",");
+			foreach (var column in columns) {
+				yield return new Column {
+					Name = column.Trim()
+				};
+			}
 		}
 
 		private static Table GetTable(string table) {
 			return new Table {
 				Name = table.Trim()
-			};
-		}
-
-		protected virtual IEnumerable<IColumn> GetColumns(string columns) {
-			yield return new Column {
-				Name = columns.Trim()
 			};
 		}
 	}

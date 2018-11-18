@@ -2,12 +2,12 @@
 
 namespace QueryInspector.Models {
 	public interface ISelectQuery {
-		IEnumerable<IColumn> Columns { get; }
+		IReadOnlyList<IColumn> Columns { get; }
 		ITable Table { get; }
 	}
 	
 	public class SelectQuery : ISelectQuery {
-		public IEnumerable<IColumn> Columns { get; set; }
+		public IReadOnlyList<IColumn> Columns { get; set; }
 		public ITable Table { get; set; }
 	}
 }

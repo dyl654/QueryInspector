@@ -9,7 +9,7 @@ namespace QueryInspector.QueryFactories {
 			return type.LooksLike("select");
 		}
 
-		public IQuery ParseQuery(string sql) {
+		public ISelectQuery ParseQuery(string sql) {
 			var scanner = new TokenScanner(sql);
 			while (scanner.TokenIsAvailable) {
 				if (!scanner.Read().LooksLike("from")) continue;
@@ -19,7 +19,9 @@ namespace QueryInspector.QueryFactories {
 					next = scanner.Read();
 				}
 				return new SelectQuery {
-					Table = next.Contents
+					Table = new Table {
+						Name = next.Contents
+					}
 				};
 			}
 			return null;

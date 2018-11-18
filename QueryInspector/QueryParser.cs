@@ -9,7 +9,7 @@ namespace QueryInspector {
 			QueryFactories.Add(new SelectQueryFactory());
 		}
 		
-		public virtual IQuery Parse(string sql) {
+		public virtual ISelectQuery Parse(string sql) {
 			foreach (var factory in QueryFactories) {
 				if (factory.CanParseQuery(sql)) return factory.ParseQuery(sql);
 			}

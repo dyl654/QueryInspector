@@ -10,7 +10,7 @@ namespace QueryInspector.Test
         public void BasicSelectTest() {
             var parser = new QueryParser();
             var query = parser.Parse("select row12 , users.email from users");
-            query.Table.Should().Be("users");
+            query.Table.Name.Should().Be("users");
         }
     }
 }

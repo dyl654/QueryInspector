@@ -1,4 +1,4 @@
-﻿namespace QueryInspector {
+﻿namespace QueryInspector.Models {
 	public interface ISelectQuery {
 		ITable Table { get; }
 	}

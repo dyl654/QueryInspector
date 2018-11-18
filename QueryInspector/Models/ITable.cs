@@ -1,4 +1,4 @@
-﻿namespace QueryInspector {
+﻿namespace QueryInspector.Models {
 	public interface ITable {
 		string Name { get; }
 		string Alias { get; }

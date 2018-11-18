@@ -1,4 +1,5 @@
-﻿using QueryInspector.Parsing;
+﻿using QueryInspector.Models;
+using QueryInspector.Parsing;
 
 namespace QueryInspector.QueryFactories {
 	public class SelectQueryFactory : IQueryFactory {

@@ -1,4 +1,4 @@
-﻿namespace QueryInspector {
+﻿namespace QueryInspector.Models {
 	public interface IColumn {
 		string Name { get; }
 		string Alias { get; }

@@ -19,12 +19,11 @@ namespace QueryInspector.ModelFactories {
 			};
 		}
 
-		protected virtual IEnumerable<IColumn> GetColumns(string columnList) {
+		protected virtual IEnumerable<ColumnCollector> GetColumns(string columnList) {
 			var columns = columnList.Split(",");
-			foreach (var column in columns) {
-				yield return new Column {
-					Name = column.Trim()
-				};
+			foreach (var column in columns)
+			{
+				yield return new ColumnCollector(column.Trim());
 			}
 		}
 

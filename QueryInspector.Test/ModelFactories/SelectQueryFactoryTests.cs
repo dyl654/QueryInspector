@@ -29,5 +29,17 @@ namespace QueryInspector.Test.ModelFactories {
 			query.Columns[0].Name.Should().Be("col1");
 			query.Columns[1].Name.Should().Be("col2");
 		}
+
+		[Test]
+		public void CorrectlyIdentifiesColumnsWithTableNames()
+		{
+			var factory = new SelectQueryFactory();
+			var query = factory.ParseQuery("select users.col1, col2 from users");
+
+			query.Columns.Count().Should().Be(2);
+			query.Columns[0].Name.Should().Be("col1");
+			query.Columns[0].Table.Name.Should().Be("users");
+			query.Columns[1].Name.Should().Be("col2");
+		}
 	}
 }
